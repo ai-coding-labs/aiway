@@ -1,0 +1,201 @@
+/* GitHub Badge Component Styles */
+
+.github-badge {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
+  border-radius: 12px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.github-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  background: linear-gradient(135deg, #2c3237 0%, #1f2328 100%);
+}
+
+.github-badge-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+}
+
+.github-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.github-badge:hover .github-icon {
+  transform: scale(1.1);
+}
+
+.github-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.github-repo-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #f0f6fc;
+  line-height: 1;
+}
+
+.github-star-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #8b949e;
+  line-height: 1;
+}
+
+.star-icon {
+  width: 12px;
+  height: 12px;
+  fill: #ffd700;
+}
+
+.github-tooltip {
+  position: absolute;
+  bottom: -45px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  backdrop-filter: blur(10px);
+}
+
+.github-tooltip::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: 12px;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.9);
+  transform: rotate(45deg);
+}
+
+.github-badge:hover .github-tooltip {
+  opacity: 1;
+  visibility: visible;
+  bottom: -40px;
+}
+
+.github-loading {
+  color: #8b949e;
+  font-size: 11px;
+}
+
+.github-error {
+  color: #f85149;
+  font-size: 11px;
+}
+
+/* Footer GitHub Link Styles */
+.footer-github-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-github-link:hover {
+  color: #8b5cf6;
+  text-decoration: underline;
+}
+
+.footer-github-icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .github-badge {
+    top: 15px;
+    right: 15px;
+    padding: 10px 12px;
+  }
+  
+  .github-repo-name {
+    font-size: 11px;
+  }
+  
+  .github-star-count {
+    font-size: 10px;
+  }
+  
+  .github-tooltip {
+    font-size: 11px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .github-badge {
+    top: 10px;
+    right: 10px;
+    padding: 8px 10px;
+  }
+  
+  .github-stats {
+    display: none;
+  }
+  
+  .github-tooltip {
+    bottom: -35px;
+    font-size: 10px;
+  }
+}
+
+/* Animation for star count updates */
+.github-star-count.updating {
+  animation: pulse 1s ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Dark mode compatibility */
+@media (prefers-color-scheme: dark) {
+  .github-badge {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    border-color: rgba(240, 246, 252, 0.1);
+  }
+  
+  .github-badge:hover {
+    background: linear-gradient(135deg, #161b22 0%, #21262d 100%);
+  }
+}

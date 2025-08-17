@@ -1,0 +1,32 @@
+{
+  "name": "ai-flavor-detector",
+  "version": "1.0.0",
+  "description": "An Electron app to detect AI flavor in websites and score them",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "cp -f src/renderer/index.html dist/renderer/ && cp -rf src/styles dist/ && cp -rf src/assets dist/",
+    "start": "npm run build && electron .",
+    "dev": "npm run build && electron .",
+    "test": "playwright test",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rimraf dist"
+  },
+  "keywords": ["electron", "typescript", "ai-detection", "website-analysis"],
+  "author": "AI Flavor Detector Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "electron": "^27.0.0",
+    "eslint": "^8.0.0",
+    "playwright": "^1.40.0",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0"
+  }
+}

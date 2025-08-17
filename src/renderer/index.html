@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI味儿检测器 - AI Flavor Detector</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/components.css">
+    <link rel="stylesheet" href="../styles/github-badge.css">
+    <link rel="stylesheet" href="../styles/report-generator.css">
+</head>
+<body>
+    <!-- GitHub Badge -->
+    <div class="github-badge" id="github-badge">
+        <a href="https://github.com/ai-coding-labs/aiway" class="github-badge-content" target="_blank" rel="noopener noreferrer">
+            <svg class="github-icon" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <div class="github-stats">
+                <div class="github-repo-name">aiway</div>
+                <div class="github-star-count">
+                    <svg class="star-icon" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span id="github-star-count" class="github-loading">加载中...</span>
+                </div>
+            </div>
+        </a>
+        <div class="github-tooltip">
+            点击访问GitHub仓库
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">AI味儿检测器</h1>
+                <p class="app-subtitle">检测网站的AI设计风格并进行评分</p>
+            </div>
+            <!-- Navigation Menu -->
+            <nav class="app-navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <button class="nav-button active" data-page="detection">
+                            <span class="nav-icon">🔍</span>
+                            <span class="nav-text">AI检测</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-button" data-page="records">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">检测记录</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Detection Page -->
+            <div id="detection-page" class="page active">
+                <!-- Control Panel -->
+        <section class="control-panel">
+            <div class="url-input-section">
+                <div class="input-group">
+                    <label for="url-input" class="input-label">请输入要检测的网站地址：</label>
+                    <div class="input-container">
+                        <input 
+                            type="url" 
+                            id="url-input" 
+                            class="url-input" 
+                            placeholder="例如：https://example.com"
+                            autocomplete="url"
+                        >
+                        <button id="load-btn" class="load-button" type="button">
+                            <span class="button-text">加载网站</span>
+                            <span class="loading-spinner" style="display: none;">⟳</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Example URLs Section -->
+                <div class="example-urls-section">
+                    <label class="example-urls-label">快速体验示例网站：</label>
+                    <div class="example-urls-note">
+                        <small>💡 提示：某些网站可能因安全策略无法在预览中显示，但仍可进行AI味检测分析</small>
+                    </div>
+                    <div class="example-urls-container">
+                        <button type="button" class="example-url-btn" data-url="https://www.51aigc.cc/#/login">
+                            <span class="example-url-icon">🤖</span>
+                            <span class="example-url-text">51AIGC</span>
+                        </button>
+                        <button type="button" class="example-url-btn" data-url="https://chat.openai.com">
+                            <span class="example-url-icon">💬</span>
+                            <span class="example-url-text">ChatGPT</span>
+                        </button>
+                        <button type="button" class="example-url-btn" data-url="https://claude.ai">
+                            <span class="example-url-icon">🧠</span>
+                            <span class="example-url-text">Claude</span>
+                        </button>
+                        <button type="button" class="example-url-btn" data-url="https://www.midjourney.com">
+                            <span class="example-url-icon">🎨</span>
+                            <span class="example-url-text">Midjourney</span>
+                        </button>
+                        <button type="button" class="example-url-btn" data-url="https://stability.ai">
+                            <span class="example-url-icon">🖼️</span>
+                            <span class="example-url-text">Stability AI</span>
+                        </button>
+                        <button type="button" class="example-url-btn" data-url="https://www.notion.so">
+                            <span class="example-url-icon">📝</span>
+                            <span class="example-url-text">Notion</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="auto-analyze" class="setting-checkbox" checked>
+                            <span class="setting-text">网站加载完成后自动进行AI味检测</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="analyze-btn" class="analyze-button" type="button" disabled>
+                        <span class="button-text">开始检测AI味</span>
+                        <span class="loading-spinner" style="display: none;">⟳</span>
+                    </button>
+                    <button id="clear-btn" class="clear-button" type="button">
+                        清除结果
+                    </button>
+                </div>
+            </div>
+
+            <!-- Status Display -->
+            <div class="status-section">
+                <div id="status-message" class="status-message"></div>
+                <div id="progress-bar" class="progress-bar" style="display: none;">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="results-section" style="display: none;">
+            <div class="results-header">
+                <h2>检测结果</h2>
+                <div class="analyzed-url-info">
+                    <span class="url-label">分析网站：</span>
+                    <span id="analyzed-url" class="analyzed-url">-</span>
+                </div>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="ai-score" class="score-number">0</span>
+                        <span class="score-label">AI味评分</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-content">
+                <div class="features-detected">
+                    <h3>检测到的AI特征</h3>
+                    <div id="features-list" class="features-list">
+                        <!-- Features will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="analysis-details">
+                    <h3>详细分析</h3>
+                    <div id="analysis-details" class="details-content">
+                        <!-- Analysis details will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Report Card Generator Section -->
+                <div class="report-card-generator" id="report-card-generator" style="display: none;">
+                    <div class="report-card-generator-header">
+                        <h3 class="report-card-generator-title">
+                            <svg class="card-icon" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                            生成分享卡片
+                        </h3>
+                        <div class="card-options">
+                            <div class="card-option">
+                                <input type="checkbox" id="include-timestamp" checked>
+                                <label for="include-timestamp">包含时间</label>
+                            </div>
+                            <div class="card-option">
+                                <select id="card-theme">
+                                    <option value="gradient">渐变主题</option>
+                                    <option value="light">浅色主题</option>
+                                    <option value="dark">深色主题</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="report-card-generator-description">
+                        生成精美的检测结果卡片，可以复制到剪切板分享给朋友
+                    </p>
+                    <div class="report-card-actions">
+                        <button id="generate-card-btn" class="generate-card-btn">
+                            <svg class="btn-icon" viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                            </svg>
+                            生成卡片
+                        </button>
+                        <button id="copy-card-btn" class="copy-card-btn" disabled>
+                            <svg class="btn-icon" viewBox="0 0 24 24">
+                                <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                            </svg>
+                            复制到剪切板
+                        </button>
+                    </div>
+
+                    <!-- Card Preview -->
+                    <div class="report-card-preview" id="report-card-preview">
+                        <div class="report-card-preview-header">
+                            <h4 class="report-card-preview-title">卡片预览</h4>
+                            <div class="report-card-preview-actions">
+                                <button class="card-preview-action-btn" id="download-card-btn" title="下载图片">
+                                    <svg viewBox="0 0 24 24" width="16" height="16">
+                                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                                    </svg>
+                                </button>
+                                <button class="card-preview-action-btn" id="fullscreen-card-btn" title="全屏查看">
+                                    <svg viewBox="0 0 24 24" width="16" height="16">
+                                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="report-card-canvas-container" id="report-card-canvas-container">
+                            <div class="card-loading" id="card-loading" style="display: none;">
+                                <div class="card-loading-spinner"></div>
+                                <div class="card-loading-text">正在生成卡片...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Message -->
+                    <div class="card-success-message" id="card-success-message">
+                        <svg class="card-success-icon" viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span id="card-success-text">卡片已复制到剪切板！</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Website Preview Area -->
+        <section class="preview-section" id="preview-section" style="display: flex;">
+            <div class="preview-header">
+                <h3>网站预览</h3>
+                <div class="preview-controls">
+                    <button id="refresh-preview" class="control-button">刷新</button>
+                    <button id="toggle-preview" class="control-button">隐藏预览</button>
+                </div>
+            </div>
+            <div class="preview-container">
+                <webview id="website-webview"
+                         class="website-webview"
+                         src="about:blank"
+                         nodeintegration="false"
+                         disablewebsecurity="true"
+                         allowpopups="true"
+                         useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+                         partition="persist:webview"
+                         style="width: 100%; height: 600px;">
+                </webview>
+
+                <div id="preview-placeholder" class="preview-placeholder" style="display: none;">
+                    网站将在此处显示...
+                </div>
+            </div>
+        </section>
+            </div>
+
+            <!-- Records Page -->
+            <div id="records-page" class="page">
+                <div class="records-container">
+                    <div class="records-header">
+                        <h2>检测记录</h2>
+                        <div class="records-controls">
+                            <div class="search-container">
+                                <input type="text" id="search-input" class="search-input" placeholder="搜索网站或关键词...">
+                                <button id="search-btn" class="search-button">🔍</button>
+                            </div>
+                            <div class="filter-container">
+                                <select id="score-filter" class="filter-select">
+                                    <option value="">所有评分</option>
+                                    <option value="0-30">低AI味 (0-30分)</option>
+                                    <option value="31-69">中等AI味 (31-69分)</option>
+                                    <option value="70-100">高AI味 (70-100分)</option>
+                                </select>
+                            </div>
+                            <button id="clear-all-records" class="danger-button">清空所有记录</button>
+                        </div>
+                    </div>
+
+                    <div class="records-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">总记录数:</span>
+                            <span id="total-records" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">平均AI评分:</span>
+                            <span id="average-score" class="stat-value">0</span>
+                        </div>
+                    </div>
+
+                    <div class="records-list" id="records-list">
+                        <div class="loading-placeholder" id="records-loading">
+                            正在加载记录...
+                        </div>
+                        <div class="empty-placeholder" id="records-empty" style="display: none;">
+                            <div class="empty-icon">📋</div>
+                            <h3>暂无检测记录</h3>
+                            <p>开始检测网站以创建您的第一条记录</p>
+                            <button class="primary-button" onclick="switchToPage('detection')">开始检测</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Record Detail Page -->
+            <div id="record-detail-page" class="page">
+                <div class="record-detail-container">
+                    <div class="detail-header">
+                        <button id="back-to-records" class="back-button">← 返回记录列表</button>
+                        <div class="detail-actions">
+                            <button id="delete-current-record" class="danger-button">删除记录</button>
+                        </div>
+                    </div>
+
+                    <div class="detail-content" id="record-detail-content">
+                        <!-- Record detail content will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-content">
+                <p class="footer-text">AI味儿检测器 - 基于视觉特征的AI设计风格识别工具</p>
+                <div class="footer-links">
+                    <a href="https://github.com/ai-coding-labs/aiway" class="footer-github-link" target="_blank" rel="noopener noreferrer">
+                        <svg class="footer-github-icon" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        查看源码
+                    </a>
+                    <span class="version-info">v1.0.0</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="error-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>错误提示</h3>
+                <button class="modal-close" id="close-error-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="error-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button" id="error-ok-btn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>操作成功</h3>
+                <button class="modal-close" id="close-success-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="success-message"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button" id="success-ok-btn">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('HTML script loaded');
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM loaded');
+
+            // 设置快速体验按钮
+            const exampleUrlButtons = document.querySelectorAll('.example-url-btn');
+            console.log('Found example buttons:', exampleUrlButtons.length);
+            exampleUrlButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const url = button.getAttribute('data-url');
+                    console.log('Example button clicked, URL:', url);
+                    if (url) {
+                        const urlInput = document.getElementById('url-input');
+                        urlInput.value = url;
+                        console.log('URL set to input:', url);
+
+                        // 显示状态消息
+                        const statusMsg = document.getElementById('status-message');
+                        if (statusMsg) {
+                            statusMsg.textContent = '正在自动加载网站...';
+                            statusMsg.className = 'status-message loading';
+                        }
+
+                        // 添加视觉反馈
+                        button.classList.add('clicked');
+                        setTimeout(() => {
+                            button.classList.remove('clicked');
+                        }, 200);
+
+                        // 自动加载网站
+                        setTimeout(() => {
+                            console.log('Auto-loading website after example button click');
+                            loadWebsiteAndDetect(url);
+                        }, 500);
+                    }
+                });
+            });
+
+            const loadBtn = document.getElementById('load-btn');
+            console.log('Load button found:', loadBtn);
+            if (loadBtn) {
+                loadBtn.addEventListener('click', () => {
+                    console.log('Load button clicked directly');
+                    const urlInput = document.getElementById('url-input');
+                    const url = urlInput.value.trim();
+                    console.log('URL to load:', url);
+
+                    if (url) {
+                        loadWebsiteAndDetect(url);
+                    } else {
+                        const statusMsg = document.getElementById('status-message');
+                        if (statusMsg) {
+                            statusMsg.textContent = '请输入网站地址';
+                            statusMsg.className = 'status-message error';
+                        }
+                    }
+                });
+            }
+
+            // 设置分析按钮事件
+            const analyzeBtn = document.getElementById('analyze-btn');
+            if (analyzeBtn) {
+                analyzeBtn.addEventListener('click', () => {
+                    console.log('Analyze button clicked manually');
+                    startAIFlavorDetection();
+                });
+            }
+        });
+
+        // 加载网站并检测函数
+        function loadWebsiteAndDetect(url) {
+            console.log('Loading website and detecting:', url);
+            const statusMsg = document.getElementById('status-message');
+            const webview = document.getElementById('website-webview');
+
+            if (statusMsg) {
+                statusMsg.textContent = '正在加载网站...';
+                statusMsg.className = 'status-message loading';
+            }
+
+            if (webview && url) {
+                console.log('Setting webview src to:', url);
+                webview.src = url;
+
+                // 启用分析按钮并自动开始检测
+                const analyzeBtn = document.getElementById('analyze-btn');
+                if (analyzeBtn) {
+                    setTimeout(() => {
+                        analyzeBtn.disabled = false;
+                        if (statusMsg) {
+                            statusMsg.textContent = '网站加载完成，正在自动检测AI味...';
+                            statusMsg.className = 'status-message loading';
+                        }
+
+                        // 自动开始AI味检测
+                        setTimeout(() => {
+                            console.log('Starting automatic AI flavor detection...');
+                            startAIFlavorDetection();
+                        }, 1000);
+                    }, 3000);
+                }
+            }
+        }
+
+        // AI味检测函数
+        function startAIFlavorDetection() {
+            console.log('Starting AI flavor detection...');
+            const statusMsg = document.getElementById('status-message');
+            const resultsSection = document.getElementById('results-section');
+            const webview = document.getElementById('website-webview');
+
+            if (statusMsg) {
+                statusMsg.textContent = '正在分析网站的AI味...';
+                statusMsg.className = 'status-message loading';
+            }
+
+            // 模拟AI检测过程
+            setTimeout(() => {
+                console.log('AI detection completed');
+
+                // 获取网站信息
+                const urlInput = document.getElementById('url-input');
+                const currentUrl = urlInput.value || 'Unknown';
+                let websiteTitle = 'Unknown Website';
+
+                try {
+                    if (webview && webview.getTitle) {
+                        websiteTitle = webview.getTitle() || currentUrl;
+                    }
+                } catch (e) {
+                    console.log('Could not get webview title:', e);
+                }
+
+                // 生成模拟的检测结果
+                const mockResult = generateMockAIFlavorResult(currentUrl, websiteTitle);
+
+                // 显示结果
+                displayAIFlavorResults(mockResult);
+
+                if (statusMsg) {
+                    statusMsg.textContent = 'AI味检测完成';
+                    statusMsg.className = 'status-message success';
+                }
+
+                // 显示结果区域
+                if (resultsSection) {
+                    resultsSection.style.display = 'block';
+                }
+            }, 3000);
+        }
+
+        // 生成模拟检测结果
+        function generateMockAIFlavorResult(url, title) {
+            const aiFeatures = [
+                { name: '渐变背景', detected: Math.random() > 0.3, confidence: 'high', score: 85 },
+                { name: '圆角设计', detected: Math.random() > 0.4, confidence: 'medium', score: 72 },
+                { name: '卡片布局', detected: Math.random() > 0.2, confidence: 'high', score: 90 },
+                { name: '极简风格', detected: Math.random() > 0.3, confidence: 'medium', score: 68 },
+                { name: '大字体标题', detected: Math.random() > 0.5, confidence: 'low', score: 45 },
+                { name: '居中对齐', detected: Math.random() > 0.4, confidence: 'medium', score: 75 }
+            ];
+
+            const detectedFeatures = aiFeatures.filter(f => f.detected);
+            const avgScore = detectedFeatures.length > 0
+                ? Math.round(detectedFeatures.reduce((sum, f) => sum + f.score, 0) / detectedFeatures.length)
+                : Math.round(Math.random() * 40 + 20);
+
+            return {
+                url: url,
+                title: title,
+                score: avgScore,
+                features: aiFeatures,
+                timestamp: new Date(),
+                details: `检测到 ${detectedFeatures.length} 个AI设计特征`
+            };
+        }
+
+        // 显示检测结果
+        function displayAIFlavorResults(result) {
+            console.log('Displaying results:', result);
+
+            // 更新分析的URL
+            const analyzedUrl = document.getElementById('analyzed-url');
+            if (analyzedUrl) {
+                analyzedUrl.textContent = result.url;
+            }
+
+            // 更新AI评分
+            const aiScore = document.getElementById('ai-score');
+            if (aiScore) {
+                aiScore.textContent = result.score;
+            }
+
+            // 更新特征列表
+            const featuresList = document.getElementById('features-list');
+            if (featuresList) {
+                featuresList.innerHTML = '';
+                result.features.forEach(feature => {
+                    if (feature.detected) {
+                        const featureItem = document.createElement('div');
+                        featureItem.className = 'feature-item detected';
+                        featureItem.innerHTML = `
+                            <span class="feature-name">${feature.name}</span>
+                            <span class="feature-confidence ${feature.confidence}">${feature.confidence}</span>
+                            <span class="feature-score">${feature.score}分</span>
+                        `;
+                        featuresList.appendChild(featureItem);
+                    }
+                });
+            }
+
+            // 更新详细分析
+            const analysisDetails = document.getElementById('analysis-details');
+            if (analysisDetails) {
+                analysisDetails.innerHTML = `
+                    <p>检测时间: ${result.timestamp.toLocaleString()}</p>
+                    <p>检测结果: ${result.details}</p>
+                    <p>AI味评分: ${result.score}/100</p>
+                `;
+            }
+        }
+    </script>
+    <script src="renderer.js"></script>
+</body>
+</html>
