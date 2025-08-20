@@ -125,7 +125,7 @@ export const i18n: I18nConfig = {
 export type Language = 'zh-CN' | 'en-US';
 
 export class I18nManager {
-  private currentLanguage: Language = 'zh-CN';
+  private currentLanguage: Language = 'en-US';
   private listeners: Array<(lang: Language) => void> = [];
 
   constructor() {
@@ -134,8 +134,8 @@ export class I18nManager {
     if (savedLang && (savedLang === 'zh-CN' || savedLang === 'en-US')) {
       this.currentLanguage = savedLang;
     } else {
-      // 自动检测系统语言
-      const systemLang = navigator.language || 'zh-CN';
+      // 默认使用英文，除非系统语言明确是中文
+      const systemLang = navigator.language || 'en-US';
       this.currentLanguage = systemLang.startsWith('zh') ? 'zh-CN' : 'en-US';
     }
     
