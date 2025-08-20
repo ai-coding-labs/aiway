@@ -1,145 +1,270 @@
-# AI味儿检测器
+# AI Flavor Detector
 
-一个基于Electron的桌面应用程序，用于检测网站的AI设计风格并进行评分。
+A professional Electron-based desktop application for detecting AI design patterns in websites and providing intelligent scoring.
 
-## 功能特性
+## 🌟 Project Overview
 
-- 🌐 **网站加载**: 输入任意网址，在应用内预览网站
-- 🤖 **AI味检测**: 智能分析网站的AI设计特征
-- 📊 **评分系统**: 0-100分的AI味评分，分数越高AI味越重
-- 🎯 **特征识别**: 检测大圆角按钮、紫色配色、渐变背景等AI特征
-- 📱 **响应式设计**: 支持不同窗口大小的自适应布局
-- 🎨 **现代化UI**: 符合UI设计四大原则的精美界面
+AI Flavor Detector is a specialized tool for analyzing website design styles, intelligently identifying AI design features including modern UI elements, color schemes, layout patterns, and more. It provides a 0-100 AI flavor score, making it perfect for designers, product managers, and developers to analyze competitor website design trends.
 
-## AI味特征检测
+## ✨ Core Features
 
-本应用检测以下AI设计特征：
+### 🔍 AI Feature Detection
+- **Large Border Radius Detection** - Identifies modern rounded elements with border-radius >= 8px
+- **Purple Color Scheme Analysis** - Intelligently recognizes various purple tones and their distribution
+- **Gradient Background Detection** - Analyzes linear-gradient, radial-gradient, and other gradient effects
+- **Modern Button Styles** - Identifies buttons with rounded corners, shadows, and gradients
+- **AI-Related Keywords** - Detects AI, machine learning, and intelligent-related vocabulary on pages
 
-1. **大圆角设计** - 检测border-radius >= 8px的元素
-2. **紫色配色方案** - 识别各种紫色色调的使用
-3. **渐变背景** - 检测linear-gradient、radial-gradient等渐变效果
-4. **现代化按钮样式** - 识别具有圆角+阴影/渐变的按钮
-5. **AI相关关键词** - 检测页面中的AI、机器学习等相关词汇
+### 📊 Intelligent Scoring System
+- **0-30 points**: Low AI flavor - Traditional design style with minimal AI features
+- **31-69 points**: Medium AI flavor - Balanced design with some modern elements
+- **70-100 points**: High AI flavor - Extensive AI design features with high modernization
 
-## 技术栈
+### 🎨 User Interface Features
+- **Responsive Design** - Adaptive layout for different window sizes
+- **Modern UI** - Beautiful interface following the four UI design principles
+- **Real-time Preview** - Built-in browser preview without external browser dependency
+- **Result Export** - Support for saving and sharing detection reports
 
-- **Electron** - 跨平台桌面应用框架
-- **TypeScript** - 类型安全的JavaScript超集
-- **HTML5/CSS3** - 现代化前端技术
-- **Playwright** - 端到端测试框架
+## 🛠️ Technical Architecture
 
-## 项目结构
+### Core Technology Stack
+- **Electron 27.0.0** - Cross-platform desktop application framework supporting Windows, macOS, and Linux
+- **TypeScript 5.0.0** - Type-safe JavaScript superset for better development experience
+- **HTML5/CSS3** - Modern frontend technologies supporting latest Web standards
+- **Playwright 1.40.0** - Powerful end-to-end testing framework
 
+### Project Structure
 ```
 aiway/
 ├── src/
-│   ├── main/           # Electron主进程
-│   │   └── main.ts
-│   ├── renderer/       # 渲染进程
-│   │   ├── index.html
-│   │   ├── renderer.ts
-│   │   └── preload.ts
-│   ├── shared/         # 共享模块
-│   │   └── ai-detector.ts
-│   └── styles/         # 样式文件
-│       ├── main.css
-│       └── components.css
-├── tests/              # 测试文件
-├── dist/               # 编译输出
-└── package.json
+│   ├── main/                 # Electron main process
+│   │   └── main.ts          # Main process entry, handles window management and IPC
+│   ├── renderer/             # Renderer process
+│   │   ├── index.html       # Main interface HTML structure
+│   │   ├── renderer.ts      # Renderer process main logic
+│   │   ├── github-badge.ts  # GitHub badge generator
+│   │   └── preload.ts       # Preload script for secure main-renderer bridging
+│   ├── shared/               # Shared modules
+│   │   ├── ai-detector.ts   # AI feature detection core algorithms
+│   │   ├── report-card-generator.ts  # Report card generator
+│   │   ├── github-service.ts # GitHub service integration
+│   │   └── storage-service.ts # Local storage service
+│   ├── styles/               # Style files
+│   │   ├── main.css         # Main style file
+│   │   └── components.css   # Component style file
+│   └── assets/               # Static assets
+├── tests/                    # Playwright test files
+├── dist/                     # TypeScript compilation output
+├── start.sh                  # One-click startup script
+└── package.json              # Project configuration and dependency management
 ```
 
-## 安装和运行
+## 🚀 Quick Start
 
-### 环境要求
+### System Requirements
+- **Node.js**: >= 16.0.0 (LTS version recommended)
+- **npm**: >= 8.0.0
+- **Operating System**: Windows 10+, macOS 10.14+, Ubuntu 18.04+
 
-- Node.js >= 16.0.0
-- npm >= 8.0.0
+### One-Click Startup (Recommended)
+```bash
+# Add execution permission to startup script
+chmod +x start.sh
 
-### 安装依赖
+# Run one-click startup script
+./start.sh
+```
 
+### Manual Installation and Setup
+
+#### 1. Clone Repository
+```bash
+git clone https://github.com/your-username/aiway.git
+cd aiway
+```
+
+#### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### 开发模式
-
-```bash
-npm run dev
-```
-
-### 构建项目
-
+#### 3. Build Project
 ```bash
 npm run build
 ```
 
-### 启动应用
-
+#### 4. Launch Application
 ```bash
 npm start
 ```
 
-### 运行测试
+### Development Mode
+```bash
+npm run dev
+```
 
+## 📖 User Guide
+
+### Basic Operation Flow
+
+1. **Launch Application**
+   - Run `npm start` or double-click `start.sh` script
+   - Wait for application to load completely
+
+2. **Enter Website URL**
+   - Input the target website address in the URL input field
+   - Supports both HTTP and HTTPS protocols
+   - Recommended to use complete URL addresses
+
+3. **Load Website**
+   - Click "Load Website" button
+   - Application displays target website in built-in preview area
+   - Wait for page to fully load
+
+4. **Start Detection**
+   - Click "Start AI Flavor Detection" button
+   - System begins analyzing website design features
+   - Detection process may take several seconds
+
+5. **View Results**
+   - Check AI flavor score (0-100 points)
+   - Browse detailed feature analysis report
+   - View detected specific elements and styles
+
+6. **Clear Results**
+   - Click "Clear Results" button
+   - Start new detection task
+
+### Advanced Features
+
+#### Batch Detection
+- Support for batch detection of multiple URLs
+- Can save detection history records
+- Support for exporting and sharing detection results
+
+#### Custom Detection
+- Adjustable weights for detection features
+- Support for adding custom detection rules
+- Configurable detection sensitivity
+
+## 🧪 Testing
+
+### Run Tests
 ```bash
 npm test
 ```
 
-### 代码检查
+### Test Coverage
+- **Unit Tests**: Core algorithms and utility function tests
+- **Integration Tests**: Module interaction tests
+- **End-to-End Tests**: Complete user operation flow tests using Playwright
 
-```bash
-npm run lint
-```
+### Test Reports
+After test completion, detailed reports can be viewed in:
+- `test-results/` - Test result data
+- `playwright-report/` - Playwright test reports
 
-## 使用说明
+## 🔧 Development Guide
 
-1. **启动应用**: 运行 `npm start` 启动AI味儿检测器
-2. **输入网址**: 在输入框中输入要检测的网站地址
-3. **加载网站**: 点击"加载网站"按钮，应用会在预览区域显示网站
-4. **开始检测**: 点击"开始检测AI味"按钮，开始分析网站特征
-5. **查看结果**: 查看AI味评分和详细的特征分析报告
-6. **清除结果**: 点击"清除结果"按钮重新开始
+### Adding New Detection Features
 
-## 评分标准
+1. **Extend Detection Algorithms**
+   ```typescript
+   // Add new methods in src/shared/ai-detector.ts
+   export function detectNewFeature(document: Document): FeatureResult {
+     // Implement new detection logic
+     return {
+       name: 'New Feature',
+       score: 0,
+       elements: [],
+       description: 'Feature description'
+     };
+   }
+   ```
 
-- **0-30分**: 低AI味 - 传统设计风格，AI特征较少
-- **31-69分**: 中等AI味 - 部分现代化设计元素
-- **70-100分**: 高AI味 - 大量AI设计特征，现代化程度高
+2. **Update Scoring Algorithm**
+   ```typescript
+   // Integrate new features in analyzeFeatures method
+   const newFeatureResult = detectNewFeature(document);
+   features.push(newFeatureResult);
+   ```
 
-## 开发指南
+3. **Add Test Cases**
+   ```typescript
+   // Add corresponding test files in tests/ directory
+   test('should detect new feature correctly', async ({ page }) => {
+     // Test new feature detection logic
+   });
+   ```
 
-### 添加新的检测特征
+### Custom Styling
 
-1. 在 `src/shared/ai-detector.ts` 中添加新的检测方法
-2. 在 `analyzeFeatures` 方法中调用新的检测逻辑
-3. 更新评分算法以包含新特征的权重
+- **Main Styles**: `src/styles/main.css` - Global styles and layout
+- **Component Styles**: `src/styles/components.css` - Component-level styles
+- **Responsive Design**: Adaptive layout support for different screen sizes
 
-### 自定义样式
+### Code Standards
 
-- 主要样式: `src/styles/main.css`
-- 组件样式: `src/styles/components.css`
+- Use TypeScript for type-safe development
+- Follow ESLint code standards
+- Maintain code readability and maintainability
 
-### 测试
+## 📝 Contributing
 
-使用Playwright进行端到端测试，测试文件位于 `tests/` 目录。
+We welcome all forms of contributions! Whether it's feature suggestions, bug reports, code contributions, or documentation improvements.
 
-## 贡献
+### Contribution Methods
 
-欢迎提交Issue和Pull Request来改进这个项目！
+1. **Submit Issues**
+   - Report bugs or suggest features
+   - Describe detailed problem information and reproduction steps
 
-## 许可证
+2. **Submit Pull Requests**
+   - Fork project and create feature branch
+   - Submit code changes
+   - Ensure all tests pass
 
-MIT License
+3. **Improve Documentation**
+   - Enhance README documentation
+   - Add usage examples and tutorials
+   - Translate documentation to other languages
 
-## 更新日志
+### Development Workflow
 
-### v1.0.0
-- 初始版本发布
-- 基本的AI味检测功能
-- 现代化用户界面
-- 完整的测试覆盖
+1. Fork project to your GitHub account
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push branch: `git push origin feature/amazing-feature`
+5. Create Pull Request
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## 🗓️ Changelog
+
+### v1.0.0 (2025-08-21)
+- 🎉 Initial version release
+- ✨ Basic AI flavor detection functionality
+- 🎨 Modern user interface design
+- 🧪 Complete test coverage
+- 📱 Responsive design support
+- 🔍 Multiple AI feature detection algorithms
+- 📊 Intelligent scoring system
+- 💾 Local storage and history records
+- 🚀 One-click startup script
+
+## 🤝 Contact Us
+
+- **Project Homepage**: [GitHub Repository](https://github.com/your-username/aiway)
+- **Issue Feedback**: [Issues](https://github.com/your-username/aiway/issues)
+- **Discussion**: [Discussions](https://github.com/your-username/aiway/discussions)
+
+## ⚠️ Disclaimer
+
+This application is for learning and research purposes only. Detection results are for reference only. When using this tool for website analysis, please comply with relevant website terms of use and applicable laws and regulations. Developers are not responsible for any consequences arising from the use of this tool.
 
 ---
 
-**注意**: 本应用仅用于学习和研究目的，检测结果仅供参考。
+**AI Flavor Detector** - Making AI design patterns visible! 🚀
