@@ -9,6 +9,32 @@
   </a>
 </div>
 
+<div align="center">
+
+[![GitHub stars](https://img.shields.io/github/stars/ai-coding-labs/aiway?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ai-coding-labs/aiway)
+[![GitHub forks](https://img.shields.io/github/forks/ai-coding-labs/aiway?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ai-coding-labs/aiway)
+[![GitHub issues](https://img.shields.io/github/issues/ai-coding-labs/aiway?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ai-coding-labs/aiway/issues)
+[![GitHub license](https://img.shields.io/github/license/ai-coding-labs/aiway?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ai-coding-labs/aiway/blob/main/LICENSE)
+
+</div>
+
+<div align="center">
+
+![Electron](https://img.shields.io/badge/Electron-47848F?style=for-the-badge&logo=electron&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white)
+
+</div>
+
+<div align="center">
+
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-00A4EF?style=for-the-badge&logo=windows&logoColor=white)
+![Version](https://img.shields.io/badge/Version-1.0.0-FF6B6B?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-00D4AA?style=for-the-badge)
+
+</div>
+
 一个基于Electron的桌面应用程序，用于检测网站的AI设计风格并进行智能评分。
 
 ## 🌟 项目简介
