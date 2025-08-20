@@ -1,5 +1,14 @@
 # AI味儿检测器
 
+<div align="right">
+  <a href="README.md" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/English-007ACC?style=for-the-badge&logo=language&logoColor=white" alt="English">
+  </a>
+  <a href="README.zh-CN.md" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/中文-FF6B6B?style=for-the-badge&logo=language&logoColor=white" alt="中文">
+  </a>
+</div>
+
 一个基于Electron的桌面应用程序，用于检测网站的AI设计风格并进行智能评分。
 
 ## 🌟 项目简介

@@ -1,5 +1,14 @@
 # AI味儿检测器 - AI Flavor Detector
 
+<div align="right">
+  <a href="README.md" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/English-007ACC?style=for-the-badge&logo=language&logoColor=white" alt="English">
+  </a>
+  <a href="README.zh-CN.md" style="text-decoration: none;">
+    <img src="https://img.shields.io/badge/中文-FF6B6B?style=for-the-badge&logo=language&logoColor=white" alt="中文">
+  </a>
+</div>
+
 [![GitHub stars](https://img.shields.io/github/stars/ai-coding-labs/aiway)](https://github.com/ai-coding-labs/aiway)
 [![GitHub forks](https://img.shields.io/github/forks/ai-coding-labs/aiway)](https://github.com/ai-coding-labs/aiway)
 [![GitHub issues](https://github.com/ai-coding-labs/aiway/issues)](https://github.com/ai-coding-labs/aiway/issues)
