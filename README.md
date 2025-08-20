@@ -1,10 +1,43 @@
-# AI Flavor Detector
+# AI味儿检测器 - AI Flavor Detector
+
+[![GitHub stars](https://img.shields.io/github/stars/ai-coding-labs/aiway)](https://github.com/ai-coding-labs/aiway)
+[![GitHub forks](https://img.shields.io/github/forks/ai-coding-labs/aiway)](https://github.com/ai-coding-labs/aiway)
+[![GitHub issues](https://github.com/ai-coding-labs/aiway/issues)](https://github.com/ai-coding-labs/aiway/issues)
+[![GitHub license](https://img.shields.io/github/license/ai-coding-labs/aiway)](https://github.com/ai-coding-labs/aiway/blob/main/LICENSE)
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Electron-47848F?style=for-the-badge&logo=electron&logoColor=white" alt="Electron">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js">
+</div>
 
 A professional Electron-based desktop application for detecting AI design patterns in websites and providing intelligent scoring.
+
+专业的基于Electron的桌面应用程序，用于检测网站中的AI设计模式并提供智能评分。
 
 ## 🌟 Project Overview
 
 AI Flavor Detector is a specialized tool for analyzing website design styles, intelligently identifying AI design features including modern UI elements, color schemes, layout patterns, and more. It provides a 0-100 AI flavor score, making it perfect for designers, product managers, and developers to analyze competitor website design trends.
+
+AI味儿检测器是一个专业的网站设计风格分析工具，能够智能识别AI设计特征，包括现代UI元素、配色方案、布局模式等。它提供0-100的AI味评分，非常适合设计师、产品经理和开发者分析竞争对手网站设计趋势。
+
+## 🌐 Language Support / 语言支持
+
+This project supports both **English** and **Chinese (Simplified)**. You can switch languages directly in the application interface.
+
+本项目支持**英文**和**中文（简体）**两种语言。您可以在应用程序界面中直接切换语言。
+
+**Switch Language / 切换语言:**
+- Click the language button (🌐) in the top-right corner of the application
+- 点击应用程序右上角的语言按钮 (🌐)
+
+**Features / 功能:**
+- **Automatic Detection**: Automatically detects system language on first launch
+- **自动检测**: 首次启动时自动检测系统语言
+- **Persistent Settings**: Remembers your language preference
+- **持久设置**: 记住您的语言偏好
+- **Real-time Switching**: Switch languages instantly without restarting
+- **实时切换**: 无需重启即可即时切换语言
 
 ## ✨ Core Features
 
@@ -22,9 +55,15 @@ AI Flavor Detector is a specialized tool for analyzing website design styles, in
 
 ### 🎨 User Interface Features
 - **Responsive Design** - Adaptive layout for different window sizes
+- **响应式设计** - 适应不同窗口大小的自适应布局
 - **Modern UI** - Beautiful interface following the four UI design principles
+- **现代UI** - 遵循四大UI设计原则的美丽界面
 - **Real-time Preview** - Built-in browser preview without external browser dependency
+- **实时预览** - 内置浏览器预览，无需外部浏览器依赖
 - **Result Export** - Support for saving and sharing detection reports
+- **结果导出** - 支持保存和分享检测报告
+- **Multi-language Support** - Seamless switching between English and Chinese
+- **多语言支持** - 英文和中文之间的无缝切换
 
 ## 🛠️ Technical Architecture
 
@@ -49,7 +88,8 @@ aiway/
 │   │   ├── ai-detector.ts   # AI feature detection core algorithms
 │   │   ├── report-card-generator.ts  # Report card generator
 │   │   ├── github-service.ts # GitHub service integration
-│   │   └── storage-service.ts # Local storage service
+│   │   ├── storage-service.ts # Local storage service
+│   │   └── i18n.ts          # Internationalization support
 │   ├── styles/               # Style files
 │   │   ├── main.css         # Main style file
 │   │   └── components.css   # Component style file
@@ -59,6 +99,16 @@ aiway/
 ├── start.sh                  # One-click startup script
 └── package.json              # Project configuration and dependency management
 ```
+
+### Internationalization Architecture / 国际化架构
+- **i18n.ts**: Core internationalization manager with language switching
+- **i18n.ts**: 核心国际化管理器，支持语言切换
+- **Language Detection**: Automatic system language detection
+- **语言检测**: 自动系统语言检测
+- **Persistent Storage**: Language preferences saved in localStorage
+- **持久存储**: 语言偏好保存在localStorage中
+- **Real-time Updates**: Dynamic text updates without page refresh
+- **实时更新**: 无需页面刷新即可动态更新文本
 
 ## 🚀 Quick Start
 
@@ -75,6 +125,18 @@ chmod +x start.sh
 # Run one-click startup script
 ./start.sh
 ```
+
+### Language Switching / 语言切换
+After starting the application, you can switch languages using the language button (🌐) in the top-right corner:
+
+启动应用程序后，您可以使用右上角的语言按钮 (🌐) 切换语言：
+
+1. **Click the language button** to toggle between English and Chinese
+   **点击语言按钮** 在英文和中文之间切换
+2. **Language preference** is automatically saved and restored on next launch
+   **语言偏好** 会自动保存并在下次启动时恢复
+3. **All interface text** updates instantly without restarting
+   **所有界面文本** 无需重启即可即时更新
 
 ### Manual Installation and Setup
 
@@ -183,6 +245,36 @@ After test completion, detailed reports can be viewed in:
    }
    ```
 
+### Adding New Languages / 添加新语言
+
+1. **Update i18n.ts Configuration**
+   ```typescript
+   // Add new language in src/shared/i18n.ts
+   'ja-JP': {
+     'app-title': 'AI味検出器',
+     'app-subtitle': 'ウェブサイトのAIデザインスタイルを検出してスコアリング',
+     // ... add all text keys
+   }
+   ```
+
+2. **Update Language Type**
+   ```typescript
+   export type Language = 'zh-CN' | 'en-US' | 'ja-JP';
+   ```
+
+3. **Add Language Detection**
+   ```typescript
+   // In constructor, add Japanese detection
+   if (systemLang.startsWith('ja')) {
+     this.currentLanguage = 'ja-JP';
+   }
+   ```
+
+4. **Test All Text Elements**
+   - Verify all interface text displays correctly
+   - Test language switching functionality
+   - Ensure proper text alignment and layout
+
 2. **Update Scoring Algorithm**
    ```typescript
    // Integrate new features in analyzeFeatures method
@@ -230,6 +322,12 @@ We welcome all forms of contributions! Whether it's feature suggestions, bug rep
    - Add usage examples and tutorials
    - Translate documentation to other languages
 
+4. **Internationalization Support**
+   - Add new language translations
+   - Improve existing translations
+   - Test language switching functionality
+   - Ensure proper text formatting for different languages
+
 ### Development Workflow
 
 1. Fork project to your GitHub account
@@ -243,6 +341,16 @@ We welcome all forms of contributions! Whether it's feature suggestions, bug rep
 This project is licensed under the [MIT License](LICENSE).
 
 ## 🗓️ Changelog
+
+### v1.1.0 (2025-01-21)
+- 🌐 **Multi-language Support**: Added English and Chinese language switching
+- 🌐 **多语言支持**: 添加英文和中文语言切换
+- 🔄 **Real-time Language Switching**: Switch languages instantly without restart
+- 🔄 **实时语言切换**: 无需重启即可即时切换语言
+- 💾 **Persistent Language Settings**: Remember user language preferences
+- 💾 **持久语言设置**: 记住用户语言偏好
+- 🎯 **Automatic Language Detection**: Detect system language on first launch
+- 🎯 **自动语言检测**: 首次启动时自动检测系统语言
 
 ### v1.0.0 (2025-08-21)
 - 🎉 Initial version release
@@ -264,6 +372,32 @@ This project is licensed under the [MIT License](LICENSE).
 ## ⚠️ Disclaimer
 
 This application is for learning and research purposes only. Detection results are for reference only. When using this tool for website analysis, please comply with relevant website terms of use and applicable laws and regulations. Developers are not responsible for any consequences arising from the use of this tool.
+
+---
+
+## 🌟 Language Switching Feature Summary / 语言切换功能总结
+
+The **Multi-language Support** feature provides a seamless bilingual experience:
+
+**多语言支持**功能提供无缝的双语体验：
+
+### ✨ Key Benefits / 主要优势
+- **🌍 Global Accessibility**: Support for users worldwide
+- **🌍 全球可访问性**: 支持全球用户
+- **🔄 Instant Switching**: Change languages with one click
+- **🔄 即时切换**: 一键切换语言
+- **💾 Smart Memory**: Remembers your language preference
+- **💾 智能记忆**: 记住您的语言偏好
+- **🎯 Auto-Detection**: Automatically detects your system language
+- **🎯 自动检测**: 自动检测您的系统语言
+
+### 🚀 How to Use / 使用方法
+1. **Launch the app** - Application starts in your preferred language
+   **启动应用** - 应用程序以您偏好的语言启动
+2. **Click the language button (🌐)** - Located in the top-right corner
+   **点击语言按钮 (🌐)** - 位于右上角
+3. **Enjoy instant switching** - All text updates immediately
+   **享受即时切换** - 所有文本立即更新
 
 ---
 

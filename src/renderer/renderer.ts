@@ -1,5 +1,6 @@
 // Renderer process main script
 import { ReportCardGenerator, ReportCardData, ReportCardOptions } from '../shared/report-card-generator';
+import { i18nManager, Language } from '../shared/i18n';
 
 class AIFlavorDetectorApp {
   private urlInput!: HTMLInputElement;
@@ -38,6 +39,9 @@ class AIFlavorDetectorApp {
   // Navigation elements
   private navButtons!: NodeListOf<HTMLButtonElement>;
   private pages!: NodeListOf<HTMLElement>;
+  
+  // Language switcher
+  private languageBtn!: HTMLButtonElement;
 
   // Records page elements
   private recordsList!: HTMLElement;
@@ -78,6 +82,9 @@ class AIFlavorDetectorApp {
     // Navigation elements
     this.navButtons = document.querySelectorAll('.nav-button');
     this.pages = document.querySelectorAll('.page');
+    
+    // Language switcher
+    this.languageBtn = document.getElementById('language-btn') as HTMLButtonElement;
 
     // Records page elements
     this.recordsList = document.getElementById('records-list') as HTMLElement;
@@ -131,6 +138,11 @@ class AIFlavorDetectorApp {
     this.loadButton.addEventListener('click', () => {
       console.log('Load button clicked');
       this.handleLoadUrl();
+    });
+    
+    // Language switcher
+    this.languageBtn.addEventListener('click', () => {
+      this.toggleLanguage();
     });
 
     this.analyzeButton.addEventListener('click', () => {
@@ -336,6 +348,9 @@ class AIFlavorDetectorApp {
 
     // Wait for webview to be ready
     this.waitForWebviewReady();
+    
+    // Initialize internationalization
+    this.initializeI18n();
   }
 
   private async testLoadFunctionality(): Promise<void> {
@@ -1543,6 +1558,68 @@ class AIFlavorDetectorApp {
     setTimeout(() => {
       this.cardSuccessMessage.classList.remove('visible');
     }, 3000);
+  }
+  
+  // Language switching methods
+  private initializeI18n(): void {
+    // Set up language change listener
+    i18nManager.addLanguageChangeListener(() => {
+      this.updateAllTexts();
+    });
+    
+    // Initialize language button text
+    this.updateLanguageButton();
+    
+    // Update all texts to current language
+    this.updateAllTexts();
+  }
+  
+  private toggleLanguage(): void {
+    const currentLang = i18nManager.getCurrentLanguage();
+    const newLang: Language = currentLang === 'zh-CN' ? 'en-US' : 'zh-CN';
+    i18nManager.setLanguage(newLang);
+    this.updateLanguageButton();
+    this.updateAllTexts();
+  }
+  
+  private updateLanguageButton(): void {
+    const currentLang = i18nManager.getCurrentLanguage();
+    const languageText = this.languageBtn.querySelector('.language-text') as HTMLElement;
+    
+    if (languageText) {
+      if (currentLang === 'zh-CN') {
+        languageText.textContent = i18nManager.t('switch-to-english');
+        languageText.setAttribute('data-i18n', 'switch-to-english');
+      } else {
+        languageText.textContent = i18nManager.t('switch-to-chinese');
+        languageText.setAttribute('data-i18n', 'switch-to-chinese');
+      }
+    }
+  }
+  
+  private updateAllTexts(): void {
+    // Update all elements with data-i18n attribute
+    const i18nElements = document.querySelectorAll('[data-i18n]');
+    i18nElements.forEach(element => {
+      const key = element.getAttribute('data-i18n');
+      if (key) {
+        const text = i18nManager.t(key);
+        if (element.tagName === 'INPUT' && element.hasAttribute('data-i18n-placeholder')) {
+          (element as HTMLInputElement).placeholder = text;
+        } else {
+          element.textContent = text;
+        }
+      }
+    });
+    
+    // Update placeholders
+    const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholderElements.forEach(element => {
+      const key = element.getAttribute('data-i18n-placeholder');
+      if (key) {
+        (element as HTMLInputElement).placeholder = i18nManager.t(key);
+      }
+    });
   }
 }
 

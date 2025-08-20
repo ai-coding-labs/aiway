@@ -22,11 +22,11 @@
                     <svg class="star-icon" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                    <span id="github-star-count" class="github-loading">加载中...</span>
+                    <span id="github-star-count" class="github-loading" data-i18n="github-loading">加载中...</span>
                 </div>
             </div>
         </a>
-        <div class="github-tooltip">
+        <div class="github-tooltip" data-i18n="github-tooltip">
             点击访问GitHub仓库
         </div>
     </div>
@@ -35,22 +35,31 @@
         <!-- Header Section -->
         <header class="app-header">
             <div class="header-content">
-                <h1 class="app-title">AI味儿检测器</h1>
-                <p class="app-subtitle">检测网站的AI设计风格并进行评分</p>
+                <h1 class="app-title" data-i18n="app-title">AI味儿检测器</h1>
+                <p class="app-subtitle" data-i18n="app-subtitle">检测网站的AI设计风格并进行评分</p>
             </div>
+            
+            <!-- Language Switcher -->
+            <div class="language-switcher">
+                <button id="language-btn" class="language-btn" title="切换语言">
+                    <span class="language-icon">🌐</span>
+                    <span class="language-text" data-i18n="switch-to-english">切换到英文</span>
+                </button>
+            </div>
+            
             <!-- Navigation Menu -->
             <nav class="app-navigation">
                 <ul class="nav-menu">
                     <li class="nav-item">
                         <button class="nav-button active" data-page="detection">
                             <span class="nav-icon">🔍</span>
-                            <span class="nav-text">AI检测</span>
+                            <span class="nav-text" data-i18n="nav-detection">AI检测</span>
                         </button>
                     </li>
                     <li class="nav-item">
                         <button class="nav-button" data-page="records">
                             <span class="nav-icon">📋</span>
-                            <span class="nav-text">检测记录</span>
+                            <span class="nav-text" data-i18n="nav-records">检测记录</span>
                         </button>
                     </li>
                 </ul>
@@ -63,30 +72,31 @@
             <div id="detection-page" class="page active">
                 <!-- Control Panel -->
         <section class="control-panel">
-            <div class="url-input-section">
-                <div class="input-group">
-                    <label for="url-input" class="input-label">请输入要检测的网站地址：</label>
-                    <div class="input-container">
-                        <input 
-                            type="url" 
-                            id="url-input" 
-                            class="url-input" 
-                            placeholder="例如：https://example.com"
-                            autocomplete="url"
-                        >
-                        <button id="load-btn" class="load-button" type="button">
-                            <span class="button-text">加载网站</span>
-                            <span class="loading-spinner" style="display: none;">⟳</span>
-                        </button>
+                            <div class="url-input-section">
+                    <div class="input-group">
+                        <label for="url-input" class="input-label" data-i18n="url-input-label">请输入要检测的网站地址：</label>
+                        <div class="input-container">
+                            <input 
+                                type="url" 
+                                id="url-input" 
+                                class="url-input" 
+                                data-i18n-placeholder="url-input-placeholder"
+                                placeholder="例如：https://example.com"
+                                autocomplete="url"
+                            >
+                            <button id="load-btn" class="load-button" type="button">
+                                <span class="button-text" data-i18n="load-button">加载网站</span>
+                                <span class="loading-spinner" style="display: none;">⟳</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Example URLs Section -->
-                <div class="example-urls-section">
-                    <label class="example-urls-label">快速体验示例网站：</label>
-                    <div class="example-urls-note">
-                        <small>💡 提示：某些网站可能因安全策略无法在预览中显示，但仍可进行AI味检测分析</small>
-                    </div>
+                    <!-- Example URLs Section -->
+                    <div class="example-urls-section">
+                        <label class="example-urls-label" data-i18n="example-urls-label">快速体验示例网站：</label>
+                        <div class="example-urls-note">
+                            <small data-i18n="example-urls-note">💡 提示：某些网站可能因安全策略无法在预览中显示，但仍可进行AI味检测分析</small>
+                        </div>
                     <div class="example-urls-container">
                         <button type="button" class="example-url-btn" data-url="https://www.51aigc.cc/#/login">
                             <span class="example-url-icon">🤖</span>
